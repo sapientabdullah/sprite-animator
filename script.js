@@ -72,6 +72,11 @@ window.addEventListener("resize", () => {
 document.addEventListener("keydown", (event) => {
   const key = event.key;
 
+  const element = document.querySelector('[data-keyboard-key="' + key + '"]');
+  if (element) {
+    element.classList.add("active");
+  }
+
   if (key === "d") {
     characterState.idle = false;
     characterState.running = true;
@@ -91,6 +96,12 @@ document.addEventListener("keydown", (event) => {
 
 document.addEventListener("keyup", (event) => {
   const key = event.key;
+
+  const element = document.querySelector('[data-keyboard-key="' + key + '"]');
+  if (element) {
+    element.classList.remove("active");
+  }
+
   if (key === "d" || key === "a") {
     characterState.running = false;
     characterState.idle = true;
